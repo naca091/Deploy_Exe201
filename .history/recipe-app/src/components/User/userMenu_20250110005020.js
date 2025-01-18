@@ -3,5 +3,5 @@
 import axios from 'axios';  
 
 export const fetchUserMenus = async (userId) => {  
-    return await axios.get(`http://localhost:5000/api/usermenus/users/${userId}`);  
+    return await axios.get(`https://demcalo.onrender.com/api/usermenus/users/${userId}`);  
 };

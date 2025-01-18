@@ -42,7 +42,7 @@ const MenuDetailModal = ({
             }
     
             const response = await axios.post(
-                `http://localhost:5000/api/menus/${menu._id}/purchase`,
+                `https://demcalo.onrender.com/api/menus/${menu._id}/purchase`,
                 {}, // empty body
                 {
                     headers: {

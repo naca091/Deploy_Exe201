@@ -24,7 +24,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) =>
 
     const purchaseMenu = async () => {  
         const token = localStorage.getItem('token'); // Lấy token  
-        const response = await axios.post('http://localhost:5000/api/menus/purchase', data, {  
+        const response = await axios.post('https://demcalo.onrender.com/api/menus/purchase', data, {  
             headers: {  
                 'Authorization': `Bearer ${token}`  
             } 

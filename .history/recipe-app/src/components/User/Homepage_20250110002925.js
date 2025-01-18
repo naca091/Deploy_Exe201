@@ -30,8 +30,8 @@ const Homepage = () => {
                 }  
 
                 const [menusResponse, unlockedResponse] = await Promise.all([  
-                    axios.get('http://localhost:5000/api/menus'),  
-                    axios.get(`http://localhost:5000/api/usermenus/users/${storedUser.userId}`)  
+                    axios.get('https://demcalo.onrender.com/api/menus'),  
+                    axios.get(`https://demcalo.onrender.com/api/usermenus/users/${storedUser.userId}`)  
                 ]);  
 
                 setMenus(menusResponse.data.data);  
@@ -61,7 +61,7 @@ const Homepage = () => {
 
     const purchaseMenu = async (menuId) => {  
         try {  
-            const response = await axios.post('http://localhost:5000/api/usermenus', {  
+            const response = await axios.post('https://demcalo.onrender.com/api/usermenus', {  
                 userId: user.userId,  
                 menuId: menuId,  
             });  

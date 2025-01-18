@@ -9,7 +9,7 @@ const Register = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', values);
+            const response = await axios.post('https://demcalo.onrender.com/api/auth/register', values);
 
             if (response.data.success) {
                 message.success(response.data.message);

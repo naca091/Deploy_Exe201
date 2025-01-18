@@ -23,7 +23,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
             onOk: async () => {  
                 setLoading(true);  
                 try {  
-                    const response = await axios.post(`http://localhost:5000/api/menus/purchase/${menu.menuId}`); // Use menu.menuId  
+                    const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase/${menu.menuId}`); // Use menu.menuId  
     
                     if (response.data.success) {  
                         setMenuStatus({ isUnlocked: true });  

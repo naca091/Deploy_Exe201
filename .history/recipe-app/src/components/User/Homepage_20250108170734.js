@@ -19,7 +19,7 @@ const Homepage = () => {
     useEffect(() => {  
         const fetchMenus = async () => {  
             try {  
-                const response = await axios.get('http://localhost:5000/api/menus');  
+                const response = await axios.get('https://demcalo.onrender.com/api/menus');  
                 setMenus(response.data.data);  
             } catch (error) {  
                 console.error('Error fetching menus:', error);  
@@ -52,7 +52,7 @@ const Homepage = () => {
 
     const purchaseMenu = async (menuId) => {  
         try {  
-            const response = await axios.post('http://localhost:5000/api/userMenu/purchase', {  
+            const response = await axios.post('https://demcalo.onrender.com/api/userMenu/purchase', {  
                 userId: userId, // Sử dụng ID người dùng  
                 menuId: menuId,  
             });  

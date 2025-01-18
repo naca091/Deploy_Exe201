@@ -22,7 +22,7 @@ const AdminUploadVideo = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:5000/api/videos/upload', formData, {
+            const response = await axios.post('https://demcalo.onrender.com/api/videos/upload', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'

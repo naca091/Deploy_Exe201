@@ -32,7 +32,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
             }  
 
             // Gửi yêu cầu POST mà không cần headers  
-            const response = await axios.post(`http://localhost:5000/api/menus/purchase/${menuId}`, {  
+            const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase/${menuId}`, {  
                 userId: user._id // Gửi userId trong body của request  
             });  
 

@@ -24,7 +24,7 @@ const Profile = () => {
         try {
             const token = localStorage.getItem('token');
             await axios.put(
-                `http://localhost:5000/api/users/${user._id}`,
+                `https://demcalo.onrender.com/api/users/${user._id}`,
                 { [field]: formData[field] },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

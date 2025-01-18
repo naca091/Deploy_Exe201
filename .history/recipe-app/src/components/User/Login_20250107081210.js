@@ -19,7 +19,7 @@ const Login = () => {
       setLoading(true);
 
       // Send login request to backend
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post('https://demcalo.onrender.com/login', {
         username,
         password, // Plain-text password
       });

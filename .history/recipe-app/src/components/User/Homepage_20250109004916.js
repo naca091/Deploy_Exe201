@@ -20,7 +20,7 @@ const Homepage = () => {
         const fetchData = async () => {
             try {
                 const [menusResponse, storedUser] = await Promise.all([
-                    axios.get('http://localhost:5000/api/menus'),
+                    axios.get('https://demcalo.onrender.com/api/menus'),
                     JSON.parse(localStorage.getItem('user'))
                 ]);
 
@@ -35,7 +35,7 @@ const Homepage = () => {
 
                 // Fetch unlocked menus for user
                 const unlockedResponse = await axios.get(
-                    `http://localhost:5000/api/usermenus/user/${storedUser.userId}`
+                    `https://demcalo.onrender.com/api/usermenus/user/${storedUser.userId}`
                 );
                 setUnlockedMenus(unlockedResponse.data.data.map(item => item.menuId));
             } catch (error) {
@@ -73,7 +73,7 @@ const Homepage = () => {
     const purchaseMenu = async (menuId) => {  
         try {  
             // Đảm bảo rằng user._id là ObjectId hợp lệ  
-            const response = await axios.post('http://localhost:5000/api/usermenus', {  
+            const response = await axios.post('https://demcalo.onrender.com/api/usermenus', {  
                 userId: user._id, // Kiểm tra user._id có giá trị hợp lệ  
                 menuId: menuId,  
             }); 

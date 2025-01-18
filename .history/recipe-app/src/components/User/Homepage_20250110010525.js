@@ -29,7 +29,7 @@ const Homepage = () => {
                 }  
                 setUser(storedUser);  
 
-                const menusResponse = await axios.get('http://localhost:5000/api/menus');  
+                const menusResponse = await axios.get('https://demcalo.onrender.com/api/menus');  
                 setMenus(menusResponse.data.data);  
 
                 // Fetch unlocked menus directly from the user data  
@@ -37,7 +37,7 @@ const Homepage = () => {
                 setUnlockedMenus(unlockedMenuIds);  
 
                 // Fetch updated user info to get xu  
-                const userResponse = await axios.get(`http://localhost:5000/api/users/${storedUser.userId}`);  
+                const userResponse = await axios.get(`https://demcalo.onrender.com/api/users/${storedUser.userId}`);  
                 setUser(userResponse.data);  
                 localStorage.setItem('user', JSON.stringify(userResponse.data)); // Update localStorage with new user data  
             } catch (error) {  
@@ -62,7 +62,7 @@ const Homepage = () => {
 
     const purchaseMenu = async (menuId) => {  
         try {  
-            const response = await axios.post('http://localhost:5000/api/menus/purchase', {  
+            const response = await axios.post('https://demcalo.onrender.com/api/menus/purchase', {  
                 userId: user._id, // Use user._id instead of user.userId  
                 menuId: menuId,  
             });  

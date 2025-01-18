@@ -27,12 +27,12 @@ const MenuForm = ({ visible, onCancel, onSuccess, initialValues }) => {
     const fetchData = async () => {
       try {
         const categoriesResponse = await axios.get(
-          "http://localhost:5000/api/categories"
+          "https://demcalo.onrender.com/api/categories"
         );
         setCategories(categoriesResponse.data.data);
 
         const ingredientsResponse = await axios.get(
-          "http://localhost:5000/api/ingredients"
+          "https://demcalo.onrender.com/api/ingredients"
         );
         setIngredients(ingredientsResponse.data.data);
       } catch (error) {
@@ -70,7 +70,7 @@ const MenuForm = ({ visible, onCancel, onSuccess, initialValues }) => {
 
         // Upload ảnh
         const uploadResponse = await axios.post(
-          "http://localhost:5000/api/menus/upload",
+          "https://demcalo.onrender.com/api/menus/upload",
           formData,
           {
             headers: {
@@ -104,12 +104,12 @@ const MenuForm = ({ visible, onCancel, onSuccess, initialValues }) => {
       // Gửi dữ liệu menu
       if (initialValues && initialValues._id) {
         await axios.put(
-          `http://localhost:5000/api/menus/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/menus/${initialValues._id}`,
           menuData
         );
         message.success("Menu updated successfully");
       } else {
-        await axios.post("http://localhost:5000/api/menus", menuData);
+        await axios.post("https://demcalo.onrender.com/api/menus", menuData);
         message.success("Menu added successfully");
       }
 

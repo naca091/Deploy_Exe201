@@ -166,7 +166,7 @@ const Homepage = () => {
     // Simulating API call
     const fetchMenus = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/menus');
+        const response = await fetch('https://demcalo.onrender.com/api/menus');
         const data = await response.json();
         setMenus(data.data);
       } catch (error) {

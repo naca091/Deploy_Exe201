@@ -14,7 +14,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu, onPurchaseMenu }) => 
 
             try {  
                 const response = await axios.get(  
-                    `http://localhost:5000/api/usermenus/check-status/${menu._id}`,  
+                    `https://demcalo.onrender.com/api/usermenus/check-status/${menu._id}`,  
                     { params: { userId: user.userId } }  
                 );  
                 setMenuStatus(response.data);  

@@ -25,7 +25,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
     };  
     
     try {  
-        const response = await axios.post(`http://localhost:5000/api/menus/purchase/${menuId}`, {  
+        const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase/${menuId}`, {  
             userId: currentUser.id // currentUser là thông tin người dùng đang đăng nhập  
         });  
         console.log(response.data);  

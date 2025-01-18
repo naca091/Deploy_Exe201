@@ -17,7 +17,7 @@ const UserList = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/users', {
+      const response = await axios.get('https://demcalo.onrender.com/api/users', {
         params: { search: searchTerm },
       });
       const data = Array.isArray(response.data?.data)
@@ -38,7 +38,7 @@ const UserList = () => {
   // Delete user
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/users/${id}`);
       message.success('User deleted successfully');
       fetchUsers();
     } catch (error) {
@@ -49,7 +49,7 @@ const UserList = () => {
   // Toggle user activation
   const toggleActivation = async (id, isActive) => {
     try {
-      await axios.patch(`http://localhost:5000/api/users/${id}`, { isActive: !isActive });
+      await axios.patch(`https://demcalo.onrender.com/api/users/${id}`, { isActive: !isActive });
       message.success(`User ${isActive ? 'deactivated' : 'activated'} successfully`);
       fetchUsers();
     } catch (error) {

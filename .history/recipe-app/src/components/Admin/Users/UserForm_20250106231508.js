@@ -11,7 +11,7 @@ const UserForm = ({ visible, onCancel, onSuccess, initialValues, roles }) => {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/roles');
+        const response = await axios.get('https://demcalo.onrender.com/api/roles');
         if (response.data.success) {
           setRoles(response.data.data);
         }
@@ -34,12 +34,12 @@ const UserForm = ({ visible, onCancel, onSuccess, initialValues, roles }) => {
     try {
       if (isEditing && initialValues?._id) {
         await axios.put(
-          `http://localhost:5000/api/users/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/users/${initialValues._id}`,
           values
         );
         message.success('User updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/users', values);
+        await axios.post('https://demcalo.onrender.com/api/users', values);
         message.success('User added successfully');
       }
       form.resetFields();

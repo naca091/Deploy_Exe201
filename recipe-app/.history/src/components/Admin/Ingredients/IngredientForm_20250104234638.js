@@ -21,12 +21,12 @@ const IngredientForm = ({ visible, onCancel, onSuccess, initialValues }) => {
     try {
       if (isEditing && initialValues?._id) {
         await axios.put(
-          `http://localhost:5000/api/ingredients/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/ingredients/${initialValues._id}`,
           values
         );
         message.success('Ingredients updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/ingredients', values);
+        await axios.post('https://demcalo.onrender.com/api/ingredients', values);
         message.success('Ingredients added successfully');
       }
       form.resetFields();

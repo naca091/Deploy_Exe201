@@ -12,7 +12,7 @@ const MenuList = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus');
+        const response = await axios.get('https://demcalo.onrender.com/api/menus');
         setMenus(response.data.data);
         setLoading(false);
       } catch (err) {

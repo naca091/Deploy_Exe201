@@ -12,7 +12,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userEmail, userxu }) => {
         try {
             setLoading(true);
             const response = await axios.post(
-                'http://localhost:5000/api/menus/purchase',
+                'https://demcalo.onrender.com/api/menus/purchase',
                 { menuName: menu.name, userEmail }
             );
 

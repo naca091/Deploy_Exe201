@@ -14,7 +14,7 @@ const Homepage = () => {
     useEffect(() => {
         const fetchMenus = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/menus');
+                const response = await axios.get('https://demcalo.onrender.com/api/menus');
                 if (response.data.success) {
                     setMenus(response.data.data);
                     setFilteredMenus(response.data.data);

@@ -19,7 +19,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu, onPurchaseSuccess }) 
     try {
       setLoading(true);
 
-      const response = await authAxios.post('http://localhost:5000/api/menus/purchase', {
+      const response = await authAxios.post('https://demcalo.onrender.com/api/menus/purchase', {
         menuId: menu._id
       });
 

@@ -26,7 +26,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
         const token = localStorage.getItem('token'); // Lấy token  
     
         try {  
-            const response = await axios.post('http://localhost:5000/api/menus/purchase',   
+            const response = await axios.post('https://demcalo.onrender.com/api/menus/purchase',   
                 { menuId: '67802d695acd40767f5f8dd7' }, // Dữ liệu bạn muốn gửi  
                 { headers: { 'Authorization': `Bearer ${token}` } } // Đính kèm token  
             );  

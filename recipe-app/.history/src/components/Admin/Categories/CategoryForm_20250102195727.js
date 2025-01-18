@@ -21,12 +21,12 @@ const CategoryForm = ({ visible, onCancel, onSuccess, initialValues }) => {
     try {
       if (isEditing && initialValues?._id) {
         await axios.put(
-          `http://localhost:5000/api/categories/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/categories/${initialValues._id}`,
           values
         );
         message.success('Category updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/ingredients', values);
+        await axios.post('https://demcalo.onrender.com/api/ingredients', values);
         message.success('Ingredient added successfully');
       }
       form.resetFields();

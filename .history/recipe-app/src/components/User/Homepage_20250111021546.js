@@ -13,7 +13,7 @@ const Homepage = ({ userEmail, userCoins }) => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus'); // Đường dẫn API để lấy danh sách menu
+        const response = await axios.get('https://demcalo.onrender.com/api/menus'); // Đường dẫn API để lấy danh sách menu
         if (response.data.success) {
           setMenus(response.data.data);
         }

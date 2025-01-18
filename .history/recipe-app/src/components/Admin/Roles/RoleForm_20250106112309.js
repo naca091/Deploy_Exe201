@@ -21,12 +21,12 @@ const RoleForm = ({ visible, onCancel, onSuccess, initialValues }) => {
     try {
       if (isEditing && initialValues?._id) {
         await axios.put(
-          `http://localhost:5000/api/roles/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/roles/${initialValues._id}`,
           values
         );
         message.success('Role updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/roles', values);
+        await axios.post('https://demcalo.onrender.com/api/roles', values);
         message.success('Role added successfully');
       }
       form.resetFields();

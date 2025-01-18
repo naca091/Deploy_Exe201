@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Tạo instance axios với base URL
 const api = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://demcalo.onrender.com',
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json'

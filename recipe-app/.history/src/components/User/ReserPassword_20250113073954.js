@@ -15,7 +15,7 @@ const ResetPassword = () => {
     const handleEmailSubmit = async (values) => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/reset-password-request', {
+            const response = await axios.post('https://demcalo.onrender.com/api/auth/reset-password-request', {
                 email: values.email
             });
 
@@ -34,7 +34,7 @@ const ResetPassword = () => {
     const handleVerificationSubmit = async (values) => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/verify-reset-code', {
+            const response = await axios.post('https://demcalo.onrender.com/api/auth/verify-reset-code', {
                 email,
                 verificationCode: values.verificationCode,
                 newPassword: values.newPassword

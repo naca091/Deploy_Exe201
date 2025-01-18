@@ -11,11 +11,11 @@ const MenuForm = ({ visible, onCancel, onSuccess, initialValues }) => {
 
   useEffect(() => {
     // Fetch categories and ingredients for dropdowns
-    axios.get('http://localhost:5000/api/categories')
+    axios.get('https://demcalo.onrender.com/api/categories')
       .then(response => setCategories(response.data.data))
       .catch(error => message.error('Failed to fetch categories'));
 
-    axios.get('http://localhost:5000/api/ingredients')
+    axios.get('https://demcalo.onrender.com/api/ingredients')
       .then(response => setIngredientsList(response.data.data))
       .catch(error => message.error('Failed to fetch ingredients'));
 
@@ -27,10 +27,10 @@ const MenuForm = ({ visible, onCancel, onSuccess, initialValues }) => {
   const handleSubmit = async (values) => {
     try {
       if (initialValues && initialValues._id) {
-        await axios.put(`http://localhost:5000/api/menus/${initialValues._id}`, values);
+        await axios.put(`https://demcalo.onrender.com/api/menus/${initialValues._id}`, values);
         message.success('Menu updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/menus', values);
+        await axios.post('https://demcalo.onrender.com/api/menus', values);
         message.success('Menu added successfully');
       }
       form.resetFields();

@@ -29,7 +29,7 @@ const MenuCard = ({ menu, onSeeMenu }) => (
         <div className="aspect-w-16 aspect-h-9 overflow-hidden" style={{ height: '200px' }}>
           <img
             alt={menu.name}
-            src={`http://localhost:5000${menu.image}`}
+            src={`https://demcalo.onrender.com${menu.image}`}
             className="w-full h-full object-cover"
             onError={(e) => {
               e.target.onerror = null;
@@ -85,7 +85,7 @@ const MenuCard = ({ menu, onSeeMenu }) => (
           {/* Ảnh với kích thước cố định */}
           <div className="w-full h-[400px] overflow-hidden rounded-lg">
             <img 
-              src={`http://localhost:5000${menu.image}`}
+              src={`https://demcalo.onrender.com${menu.image}`}
               alt={menu.name} 
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -138,7 +138,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus');
+        const response = await axios.get('https://demcalo.onrender.com/api/menus');
         setMenus(response.data.data);
       } catch (error) {
         console.error('Error fetching menus:', error);
@@ -159,7 +159,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus');
+        const response = await axios.get('https://demcalo.onrender.com/api/menus');
         setMenus(response.data.data);
       } catch (error) {
         console.error('Error fetching menus:', error);
@@ -268,7 +268,7 @@ const Homepage = () => {
               cover={
                 <img
                   alt={menu.name}
-                  src={`http://localhost:5000${menu.image}`}
+                  src={`https://demcalo.onrender.com${menu.image}`}
                   className="h-40 object-cover"
                 />
               }

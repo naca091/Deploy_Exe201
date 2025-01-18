@@ -13,7 +13,7 @@ const RoleList = () => {
     const fetchRoles = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/roles');
+            const response = await axios.get('https://demcalo.onrender.com/api/roles');
             setRoles(response.data?.data || []);
         } catch (error) {
             message.error('Failed to fetch roles');
@@ -28,7 +28,7 @@ const RoleList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/roles/${id}`);
+            await axios.delete(`https://demcalo.onrender.com/api/roles/${id}`);
             message.success('Role deleted successfully');
             fetchRoles();
         } catch (error) {

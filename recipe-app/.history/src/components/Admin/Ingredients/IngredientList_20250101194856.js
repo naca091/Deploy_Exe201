@@ -14,7 +14,7 @@ useEffect(() => {
   const fetchIngredients = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/ingredients');
+      const response = await axios.get('https://demcalo.onrender.com/api/ingredients');
       console.log('Fetched ingredients:', response.data);
       const data = Array.isArray(response.data.data)
         ? response.data.data.map(item => ({ ...item, key: item._id }))
@@ -37,7 +37,7 @@ useEffect(() => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/ingredients/${id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/ingredients/${id}`);
       message.success('Ingredient deleted successfully');
       fetchIngredients();
     } catch (error) {

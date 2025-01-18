@@ -25,7 +25,7 @@ const IngredientForm = ({ visible, onCancel, onSuccess, initialValues }) => {
         formData.append("image", values.image.file.originFileObj);
   
         const uploadResponse = await axios.post(
-          "http://localhost:5000/api/menus/upload",
+          "https://demcalo.onrender.com/api/menus/upload",
           formData,
           {
             headers: {
@@ -40,12 +40,12 @@ const IngredientForm = ({ visible, onCancel, onSuccess, initialValues }) => {
       // Gửi dữ liệu menu lên server
       if (initialValues && initialValues._id) {
         await axios.put(
-          `http://localhost:5000/api/menus/${initialValues._id}`,
+          `https://demcalo.onrender.com/api/menus/${initialValues._id}`,
           values
         );
         message.success("Menu updated successfully");
       } else {
-        await axios.post("http://localhost:5000/api/menus", values);
+        await axios.post("https://demcalo.onrender.com/api/menus", values);
         message.success("Menu added successfully");
       }
       form.resetFields();

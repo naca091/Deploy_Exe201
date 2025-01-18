@@ -14,7 +14,7 @@ const RoleList = () => {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/categories');
+      const response = await axios.get('https://demcalo.onrender.com/api/categories');
       const data = Array.isArray(response.data?.data)
         ? response.data.data.map(item => ({ ...item, key: item.id }))
         : [];
@@ -33,7 +33,7 @@ const RoleList = () => {
   // Delete category
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/categories/${id}`);
       message.success('Category deleted successfully');
       fetchCategories();
     } catch (error) {

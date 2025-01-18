@@ -15,7 +15,7 @@ const Homepage = () => {
     useEffect(() => {  
         const fetchMenus = async () => {  
             try {  
-                const response = await axios.get('http://localhost:5000/api/menus'); // Đường dẫn API để lấy danh sách menu  
+                const response = await axios.get('https://demcalo.onrender.com/api/menus'); // Đường dẫn API để lấy danh sách menu  
                 if (response.data.success) {  
                     setMenus(response.data.data);  
                 }  
@@ -70,7 +70,7 @@ const Homepage = () => {
                     userXu={userXu}  
                     onPurchaseMenu={async (menuId) => {  
                         try {  
-                            const response = await axios.post(`http://localhost:5000/api/menus/purchase`, { menuId, userId: user.userId });  
+                            const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase`, { menuId, userId: user.userId });  
                             return response.data; // Trả về dữ liệu từ response  
                         } catch (error) {  
                             console.error('Failed to purchase menu:', error);  

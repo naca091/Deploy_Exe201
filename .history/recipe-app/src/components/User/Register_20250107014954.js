@@ -11,7 +11,7 @@ const Register = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/register', {
+      const response = await axios.post('https://demcalo.onrender.com/register', {
         username: values.username.trim(),
         password: values.password,
         email: values.email.trim(),

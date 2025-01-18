@@ -20,7 +20,7 @@ const Homepage = () => {
     useEffect(() => {  
         const fetchMenus = async () => {  
             try {  
-                const response = await axios.get('http://localhost:5000/api/menus');  
+                const response = await axios.get('https://demcalo.onrender.com/api/menus');  
                 setMenus(response.data.data);  
             } catch (error) {  
                 console.error('Error fetching menus:', error);  
@@ -54,7 +54,7 @@ const Homepage = () => {
     const purchaseMenu = async (menuId) => {  
         try {  
             // Đảm bảo rằng user._id là ObjectId hợp lệ  
-            const response = await axios.post('http://localhost:5000/api/usermenus', {  
+            const response = await axios.post('https://demcalo.onrender.com/api/usermenus', {  
                 userId: user._id, // Kiểm tra user._id có giá trị hợp lệ  
                 menuId: menuId,  
             }); 

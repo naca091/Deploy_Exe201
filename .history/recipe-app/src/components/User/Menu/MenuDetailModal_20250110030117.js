@@ -29,7 +29,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
                 return;  
             }  
     
-            const response = await axios.post(`http://localhost:5000/api/menus/purchase/${menuIdz}`, {}, {  
+            const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase/${menuIdz}`, {}, {  
                 headers: {  
                     'Authorization': user._id   
                 }  

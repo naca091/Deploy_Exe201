@@ -13,7 +13,7 @@ const IngredientList = () => {
   const fetchIngredients = async () => {  
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/ingredients');
+      const response = await axios.get('https://demcalo.onrender.com/api/ingredients');
       const data = Array.isArray(response.data) 
         ? response.data.map(item => ({ ...item, key: item._id }))
         : [];
@@ -31,7 +31,7 @@ const IngredientList = () => {
     const fetchIngredients = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:5000/api/ingredients');
+        const response = await axios.get('https://demcalo.onrender.com/api/ingredients');
         console.log('Fetched ingredients:', response.data);
         const data = Array.isArray(response.data.data)
           ? response.data.data.map(item => ({ ...item, key: item._id }))
@@ -54,7 +54,7 @@ const IngredientList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/ingredients/${_id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/ingredients/${_id}`);
       message.success('Ingredient deleted successfully');
       fetchIngredients();
     } catch (error) {

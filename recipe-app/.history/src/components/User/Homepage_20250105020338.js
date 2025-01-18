@@ -41,7 +41,7 @@ const MenuDetailModal = ({ menu, visible, onClose }) => {
       <div className="space-y-6">
         {/* Hình ảnh */}
         <img 
-          src={`http://localhost:5000${menu.image}`} 
+          src={`https://demcalo.onrender.com${menu.image}`} 
           alt={menu.name} 
           className="w-full h-64 object-cover rounded-lg"
         />
@@ -142,7 +142,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus');
+        const response = await axios.get('https://demcalo.onrender.com/api/menus');
         setMenus(response.data.data);
       } catch (error) {
         console.error('Error fetching menus:', error);
@@ -163,7 +163,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menus');
+        const response = await axios.get('https://demcalo.onrender.com/api/menus');
         setMenus(response.data.data);
       } catch (error) {
         console.error('Error fetching menus:', error);
@@ -268,7 +268,7 @@ const Homepage = () => {
               cover={
                 <img
                   alt={menu.name}
-                  src={`http://localhost:5000${menu.image}`}
+                  src={`https://demcalo.onrender.com${menu.image}`}
                   className="h-40 object-cover"
                 />
               }

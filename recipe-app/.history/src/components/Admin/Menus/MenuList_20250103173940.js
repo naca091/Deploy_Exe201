@@ -16,7 +16,7 @@ const MenuList = () => {
   const fetchMenus = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/menus");
+      const response = await axios.get("https://demcalo.onrender.com/api/menus");
       setMenus(response.data.data);
     } catch (error) {
       message.error("Failed to fetch menus");
@@ -27,7 +27,7 @@ const MenuList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/menus/${id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/menus/${id}`);
       message.success("Menu deleted successfully");
       fetchMenus();
     } catch (error) {

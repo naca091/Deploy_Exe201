@@ -65,7 +65,7 @@ const MenuDetailModal = ({ menu, userCoins, onPurchase }) => {
           {/* Image Section */}
           <div className="w-full h-[400px] overflow-hidden rounded-lg">
             <img
-              src={`http://localhost:5000${menu.image}`}
+              src={`https://demcalo.onrender.com${menu.image}`}
               alt={menu.name}
               className="w-full h-full object-cover"
               onError={(e) => {

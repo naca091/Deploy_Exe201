@@ -18,7 +18,7 @@ const MenuCard = ({ menu, onSeeMenu }) => (
     >
       <img
         alt={menu.name}
-        src={`http://localhost:5000${menu.image}`}
+        src={`https://demcalo.onrender.com${menu.image}`}
         className="absolute top-0 left-0 w-full h-full object-cover"
         onError={(e) => {
           e.target.onerror = null;

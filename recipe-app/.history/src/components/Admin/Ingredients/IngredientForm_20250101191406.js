@@ -21,7 +21,7 @@ const IngredientForm = ({ visible, onCancel, onSuccess, initialValues }) => {
       // Log để debug
       console.log('Submitting values:', values);
       
-      const response = await axios.post('http://localhost:5000/api/ingredients', values);
+      const response = await axios.post('https://demcalo.onrender.com/api/ingredients', values);
       console.log('Response:', response.data);
       
       message.success('Ingredient added successfully');

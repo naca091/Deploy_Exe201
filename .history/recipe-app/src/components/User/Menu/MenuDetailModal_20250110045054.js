@@ -32,7 +32,7 @@ const MenuDetailModal = ({ menu, visible, onClose, userXu }) => {
             }  
     
             // Gửi yêu cầu POST với tên menu  
-            const response = await axios.post(`http://localhost:5000/api/menus/purchase`, {  
+            const response = await axios.post(`https://demcalo.onrender.com/api/menus/purchase`, {  
                 name: menuName, // Gửi tên menu  
                 userId: user._id // (Có thể bỏ nếu được xác thực bằng middleware)   
             });  

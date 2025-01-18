@@ -21,7 +21,7 @@ const SeeVideo = () => {
     const fetchVideos = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/videos/videos', {
+            const response = await axios.get('https://demcalo.onrender.com/api/videos/videos', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -47,7 +47,7 @@ const SeeVideo = () => {
         watchTimers.current[videoId] = setTimeout(async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.post('http://localhost:5000/api/videos/award-xu', null, {
+                const response = await axios.post('https://demcalo.onrender.com/api/videos/award-xu', null, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -111,7 +111,7 @@ const SeeVideo = () => {
                                 preload="metadata"
                             >
                                 <source 
-                                    src={`http://localhost:5000/${video.videoPath}`} 
+                                    src={`https://demcalo.onrender.com/${video.videoPath}`} 
                                     type="video/mp4"
                                 />
                                 Your browser does not support the video tag.

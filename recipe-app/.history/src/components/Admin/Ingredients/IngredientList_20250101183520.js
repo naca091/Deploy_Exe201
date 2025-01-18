@@ -13,7 +13,7 @@ const IngredientList = () => {
   const fetchIngredients = async () => {
     setLoading(true);
     try {
-        const response = await axios.get('http://localhost:5000/api/ingredients');
+        const response = await axios.get('https://demcalo.onrender.com/api/ingredients');
         setIngredients(response.data);
     } catch (error) {
         console.error('Error fetching ingredients:', error);
@@ -28,7 +28,7 @@ const IngredientList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/ingredients/${id}`);
+      await axios.delete(`https://demcalo.onrender.com/api/ingredients/${id}`);
       message.success('Ingredient deleted successfully');
       fetchIngredients();
     } catch (error) {

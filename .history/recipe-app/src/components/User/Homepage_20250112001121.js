@@ -22,7 +22,7 @@ const Homepage = () => {
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const response = await axios.get('http://localhost:5000/api/auth/me', {
+                    const response = await axios.get('https://demcalo.onrender.com/api/auth/me', {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (response.data.success) {
@@ -37,7 +37,7 @@ const Homepage = () => {
 
         const fetchMenus = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/menus');
+                const response = await axios.get('https://demcalo.onrender.com/api/menus');
                 if (response.data.success) {
                     setMenus(response.data.data);
                     setFilteredMenus(response.data.data);
