@@ -21,25 +21,25 @@ dotenv.config();
 const app = express();
 
 // Constants
-const PORT = process.env.PORT || 3000;  // Changed this line
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://tien:Dtmghsk29903@cluster0.4owga.mongodb.net/recipe_db';
+const PORT = process.env.PORT || 'https://demcalo.onrender.com';  
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://tien:Dtmghsk29903@cluster0.4owga.mongodb.net/recipe_db';  
 
-// CORS configuration - Updated to include your render.com domain
+// Middleware
+app.use(express.json()); // Thêm middleware để parse JSON bodies
+app.use(express.urlencoded({ extended: true })); // Thêm middleware để parse URL-encoded bodies
+
+// Serve static files from the 'uploads' directory
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// CORS configuration
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
- );
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Serve static files
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+);
 
 // MongoDB Connection
 mongoose
@@ -50,26 +50,20 @@ mongoose
     process.exit(1);
   });
 
-// API Routes
-app.use("/api", ingredientRoutes);
-app.use("/api", categoryRoutes);
-app.use("/api", menuRouter);
-app.use("/api", roleRouter);
-app.use("/api", userRouter);
+// Use routes
+app.use(ingredientRoutes);
+app.use(categoryRoutes);
+app.use(menuRouter);
+app.use(roleRouter);
+app.use(userRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", resetPasswordRoutes);
+app.use("/uploads", express.static("uploads"));
 app.use("/api/videos", videoRoutes);
 app.use("/api", statsRouter);
 app.use("/api", attendanceRouter);
 
-// Serve static files for production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../build')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build', 'index.html'));
-  });
-}
+app.use(express.static(path.join(__dirname, "public")));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -78,7 +72,7 @@ app.use((err, req, res, next) => {
     success: false,
     message: "Internal server error",
     error: err.message,
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+    stack: err.stack,
   });
 });
 
