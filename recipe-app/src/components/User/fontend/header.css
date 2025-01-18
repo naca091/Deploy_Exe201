@@ -1,0 +1,130 @@
+/* .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .search-bar input {
+  border: none;
+  border-bottom: 1px solid #398efa !important;
+  padding: 5px 120px;
+  font-size: 15px;
+  outline: none;
+}
+
+.secondary-navbar {
+  background-color: #008b8b;
+  color: white;
+}
+
+.secondary-navbar .nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.secondary-navbar .nav-links button {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.banner-line {
+  border-bottom: 2px solid #ffffff;
+  margin: 5px 0;
+}
+.carousel img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 8px; 
+}
+
+.auth-buttons button {
+  margin: 0;
+} */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .search-bar input {
+  border: none;
+  border-bottom: 1px solid #398efa !important;
+  padding: 5px 120px;
+  font-size: 15px;
+  outline: none;
+}
+
+.secondary-navbar {
+  background-color: #008b8b;
+  color: white;
+}
+
+.secondary-navbar .nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.secondary-navbar .nav-links button {
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.banner-line {
+  border-bottom: 2px solid #ffffff;
+  margin: 5px 0;
+}
+
+.carousel img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-buttons button {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .secondary-navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .secondary-navbar .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .secondary-navbar .nav-links button {
+    margin: 5px 0;
+  }
+}

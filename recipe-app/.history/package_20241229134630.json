@@ -1,0 +1,60 @@
+{
+  "name": "recipe-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@reduxjs/toolkit": "^2.5.0",
+    "antd": "^5.22.7",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cra-template": "1.2.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-scripts": "5.0.1",
+    "recipe-app": "file:",
+    "validator": "^13.12.0"
+  },
+ "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "server": "cross-env MONGODB_URI=mongodb://0.0.0.0:27017 nodemon server/index.js"
+},
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.9"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

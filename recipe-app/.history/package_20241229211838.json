@@ -1,0 +1,48 @@
+{
+  "name": "recipe-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@reduxjs/toolkit": "^2.5.0",
+    "antd": "^5.22.7",
+    "axios": "^1.7.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "^3.0.1",
+    "recipe-app": "file:"
+  },
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "concurrently": "^9.1.1",
+    "nodemon": "^3.1.9"
+  }
+}

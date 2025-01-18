@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import axios from 'axios';
+
+const LoginPage = ({ setUserEmail }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      message.error('Please enter both email and password');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/login', {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        message.success('Login successful!');
+        setUserEmail(response.data.userEmail); // Lưu email vào state cha hoặc global state
+        navigate('/'); // Điều hướng đến trang chính
+      }
+    } catch (error) {
+      console.error('Login Error:', error);
+      message.error(
+        error.response?.data?.message || 'An error occurred during login'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button onClick={handleLogin} disabled={loading}>
+        {loading ? 'Logging in...' : 'Login'}
+      </button>
+    </div>
+  );
+};
+
+export default LoginPage;
