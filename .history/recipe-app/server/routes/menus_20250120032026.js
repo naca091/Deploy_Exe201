@@ -327,7 +327,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-/* Endpoint để tạo menu
+// Endpoint để tạo menu
 router.post("/", async (req, res) => {
   try {
     const menu = new Menu(req.body);
@@ -347,10 +347,9 @@ router.get("/api/menus", async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
-*/
 
 // Route mua menu  
-router.post("/:menuId/purchase", auth, async (req, res) => {
+router.post("/api/menus/:menuId/purchase", auth, async (req, res) => {
   try {
     const { menuId } = req.params;
     console.log('Purchase attempt for menuId:', menuId);

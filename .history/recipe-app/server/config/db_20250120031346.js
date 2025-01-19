@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');const AutoIncrement = require('mongoose-sequence')(mongoose);
 const jwt = require('jsonwebtoken');  
-const JWT_SECRET = "1f5171c9fc9d21958f87da31626db489da6e621c2444d0bbfcc24c293b6f9b71";
+const JWT_SECRET = 1f5171c9fc9d21958f87da31626db489da6e621c2444d0bbfcc24c293b6f9b71;
 
 const roleSchema = new mongoose.Schema({
   name: {

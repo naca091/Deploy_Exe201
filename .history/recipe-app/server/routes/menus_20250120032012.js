@@ -304,7 +304,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete menu by ID
-router.delete("/:id", async (req, res) => {
+router.delete("/api/menus/:id", async (req, res) => {
   try {
     const menu = await Menu.findByIdAndDelete(req.params.id);
     if (!menu) {
@@ -327,8 +327,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-/* Endpoint để tạo menu
-router.post("/", async (req, res) => {
+// Endpoint để tạo menu
+router.post("/api/menus", async (req, res) => {
   try {
     const menu = new Menu(req.body);
     await menu.save();
@@ -347,10 +347,9 @@ router.get("/api/menus", async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
-*/
 
 // Route mua menu  
-router.post("/:menuId/purchase", auth, async (req, res) => {
+router.post("/api/menus/:menuId/purchase", auth, async (req, res) => {
   try {
     const { menuId } = req.params;
     console.log('Purchase attempt for menuId:', menuId);
