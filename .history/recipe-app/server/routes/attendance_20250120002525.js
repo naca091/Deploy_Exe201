@@ -36,7 +36,7 @@ router.get("/", auth, async (req, res) => {
 });
 
 // Mark attendance
-router.post("/", auth, async (req, res) => {
+router.post("/attendance", auth, async (req, res) => {
   try {
     const today = new Date();
     today.setHours(0, 0, 0, 0);

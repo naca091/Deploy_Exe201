@@ -4,7 +4,7 @@ const { User, Attendance } = require("../models/models");
 const auth = require("../middleware/auth");
 
 // Get attendance for current month
-router.get("/", auth, async (req, res) => {
+router.get("/attendance", auth, async (req, res) => {
   try {
     const startOfMonth = new Date();
     startOfMonth.setDate(1);
@@ -36,7 +36,7 @@ router.get("/", auth, async (req, res) => {
 });
 
 // Mark attendance
-router.post("/", auth, async (req, res) => {
+router.post("/attendance", auth, async (req, res) => {
   try {
     const today = new Date();
     today.setHours(0, 0, 0, 0);

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User, LoginStat } = require("../models/models");
 
-router.get("/", async (req, res) => {
+router.get("/stats/login-count", async (req, res) => {
   try {
     // Lấy ngày hiện tại (reset về 00:00:00)
     const today = new Date();
