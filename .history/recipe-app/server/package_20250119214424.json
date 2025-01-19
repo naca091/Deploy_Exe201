@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "main": "server/server.js",
     "scripts": {
-        "start": "node server/server.js",
-        "dev": "nodemon server/server.js"
+        "start": "node server/server.js && source .env",
+        "dev": "nodemon server/server.js && source .env"
     },
     "dependencies": {
         "cors": "^2.8.5",
