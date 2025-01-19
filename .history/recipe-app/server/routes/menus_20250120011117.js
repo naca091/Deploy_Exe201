@@ -3,21 +3,18 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const { Menu, Category, Ingredient, User } = require("../models/models");
-const auth = require('../middleware/auth');
-const mongoose = require('mongoose'); // Thêm mongoose import
-
+const auth = require("../middleware/auth");
+const mongoose = require("mongoose"); // Thêm mongoose import
 
 // Cấu hình multer để lưu file vào thư mục "uploads"
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads")); 
+    cb(null, path.join(__dirname, "../uploads"));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // Tạo tên file duy nhất
   },
 });
-
-
 
 const upload = multer({ storage });
 
@@ -26,7 +23,9 @@ router.post("/upload", upload.single("image"), (req, res) => {
   try {
     console.log("Request file:", req.file); // Log file được gửi lên
     if (!req.file) {
-      return res.status(400).json({ success: false, message: "No file uploaded" });
+      return res
+        .status(400)
+        .json({ success: false, message: "No file uploaded" });
     }
     res.json({
       success: true,
@@ -38,7 +37,6 @@ router.post("/upload", upload.single("image"), (req, res) => {
     res.status(500).json({ success: false, message: "Something broke!" });
   }
 });
-
 
 // Create menu
 router.post("/", async (req, res) => {
@@ -145,62 +143,60 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get all menus
-/*router.get("/api/menus", async (req, res) => {
-  try {
-    const menus = await Menu.find().sort({ name: 1 });
-    res.json({
-      success: true,
-      count: menus.length,
-      data: menus,
-    });
-  } catch (error) {
-    console.error("Error fetching menus:", error);
-    res.status(500).json({
-      success: false,
-      message: "Error fetching menus",
-      error: error.message,
-    });
-  }
-});*/
 
-router.get('/menus', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
     const menus = await Menu.find()
-      .populate('category')
-      .populate('ingredients.ingredient')
+      .populate("category")
+      .populate("ingredients.ingredient")
       .lean();
 
-    const accessibleMenus = menus.map(menu => {
-      const isUnlocked = menu.defaultStatus === 'unlock' || 
-        user.purchasedMenus.some(p => p.menuId.equals(menu._id));
+    // Nếu có user đăng nhập
+    if (req.user) {
+      const user = await User.findById(req.user._id);
+      const accessibleMenus = menus.map((menu) => {
+        const isUnlocked =
+          menu.defaultStatus === "unlock" ||
+          user.purchasedMenus.some((p) => p.menuId.equals(menu._id));
 
-      // Nếu menu bị khóa và chưa mua, ẩn thông tin chi tiết
-      if (!isUnlocked && menu.defaultStatus === 'lock') {
+        if (!isUnlocked && menu.defaultStatus === "lock") {
+          return {
+            _id: menu._id,
+            name: menu.name,
+            image: menu.image,
+            description: menu.description,
+            category: menu.category,
+            unlockPrice: menu.unlockPrice,
+            defaultStatus: menu.defaultStatus,
+            averageRating: menu.averageRating,
+            ratingCount: menu.ratingCount,
+            isLocked: true,
+          };
+        }
+
         return {
-          _id: menu._id,
-          name: menu.name,
-          image: menu.image,
-          description: menu.description,
-          category: menu.category,
-          unlockPrice: menu.unlockPrice,
-          defaultStatus: menu.defaultStatus,
-          averageRating: menu.averageRating,
-          ratingCount: menu.ratingCount,
-          isLocked: true
+          ...menu,
+          isLocked: false,
         };
-      }
+      });
 
-      return {
+      return res.json(accessibleMenus);
+    }
+
+    // Nếu không có user, trả về menu cơ bản
+    res.json({
+      success: true,
+      data: menus.map(menu => ({
         ...menu,
-        isLocked: false
-      };
+        isLocked: menu.defaultStatus === "lock"
+      }))
     });
 
-    res.json(accessibleMenus);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ 
+      success: false, 
+      message: error.message 
+    });
   }
 });
 
@@ -345,61 +341,72 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Endpoint để tạo menu
+router.post("/", async (req, res) => {
+  try {
+    const menu = new Menu(req.body);
+    await menu.save();
+    res.status(201).json({ success: true, data: menu });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
 
 
-// Route mua menu  
+// Route mua menu
 router.post("/:menuId/purchase", auth, async (req, res) => {
   try {
     const { menuId } = req.params;
-    console.log('Purchase attempt for menuId:', menuId);
-    console.log('User ID from auth:', req.user._id);
+    console.log("Purchase attempt for menuId:", menuId);
+    console.log("User ID from auth:", req.user._id);
 
     if (!mongoose.Types.ObjectId.isValid(menuId)) {
-      throw new Error('Invalid menu ID format');
+      throw new Error("Invalid menu ID format");
     }
 
     const user = await User.findById(req.user._id);
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
     const menu = await Menu.findById(menuId);
     if (!menu) {
-      throw new Error('Menu not found');
+      throw new Error("Menu not found");
     }
 
-    if (menu.defaultStatus === 'unlock') {
-      throw new Error('This menu is already unlocked');
+    if (menu.defaultStatus === "unlock") {
+      throw new Error("This menu is already unlocked");
     }
 
-    const alreadyPurchased = user.purchasedMenus.some(p => 
-      p.menuId && p.menuId.toString() === menuId
+    const alreadyPurchased = user.purchasedMenus.some(
+      (p) => p.menuId && p.menuId.toString() === menuId
     );
     if (alreadyPurchased) {
-      throw new Error('Menu already purchased');
+      throw new Error("Menu already purchased");
     }
 
     if (user.xu < menu.unlockPrice) {
-      throw new Error(`Insufficient xu balance. Required: ${menu.unlockPrice}, Current: ${user.xu}`);
+      throw new Error(
+        `Insufficient xu balance. Required: ${menu.unlockPrice}, Current: ${user.xu}`
+      );
     }
 
     // Cập nhật user
     user.xu -= menu.unlockPrice;
     user.purchasedMenus.push({ menuId });
     await user.save();
-    
-    res.json({ 
-      success: true,
-      message: 'Menu purchased successfully',
-      remainingXu: user.xu,
-      menuId: menuId
-    });
 
+    res.json({
+      success: true,
+      message: "Menu purchased successfully",
+      remainingXu: user.xu,
+      menuId: menuId,
+    });
   } catch (error) {
-    console.error('Purchase error:', error);
-    res.status(400).json({ 
+    console.error("Purchase error:", error);
+    res.status(400).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 });
