@@ -95,7 +95,7 @@ router.get("/me", auth, async (req, res) => {
 });
 
 //logout
-router.post("/logout", (req, res) => {
+router.post("/", (req, res) => {
   // Ghi nhật ký hoặc xử lý đăng xuất nếu cần
   res.status(200).json({
     success: true,
@@ -104,7 +104,7 @@ router.post("/logout", (req, res) => {
 });
 
 //register
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
   const {
     username,
     password,

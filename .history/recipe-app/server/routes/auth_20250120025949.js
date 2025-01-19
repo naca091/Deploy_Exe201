@@ -104,7 +104,7 @@ router.post("/logout", (req, res) => {
 });
 
 //register
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
   const {
     username,
     password,
