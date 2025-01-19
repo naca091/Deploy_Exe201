@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create category
-router.post('/', async (req, res) => {
+router.post('/api/categories', async (req, res) => {
     try {
         debug('Creating new category with data:', req.body);
         const { name } = req.body;  // Chỉ lấy name từ request
@@ -108,7 +108,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update Category
-router.put('/:id', async (req, res) => {
+router.put('/api/categories/:id', async (req, res) => {
     try {
         debug('Updating category with id:', req.params.id);
         debug('Update data:', req.body);
@@ -161,7 +161,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete category
-router.delete('/:id', async (req, res) => {
+router.delete('/api/categories/:id', async (req, res) => {
     try {
         debug('Deleting category with id:', req.params.id);
         
