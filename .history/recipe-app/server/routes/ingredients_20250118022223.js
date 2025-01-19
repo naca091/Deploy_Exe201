@@ -10,13 +10,12 @@ router.use((req, res, next) => {
     next();
 });
 
-
 // Get all ingredients
-router.get('/', async (req, res) => {
+router.get('/api/ingredients', async (req, res) => {
     try {
-        console.log('Attempting to fetch ingredients');
+        debug('Fetching all ingredients');
         const ingredients = await Ingredient.find().sort({ name: 1 });
-        console.log('Fetched ingredients:', ingredients);
+        debug(`Found ${ingredients.length} ingredients`);
         
         res.json({
             success: true,
@@ -24,7 +23,7 @@ router.get('/', async (req, res) => {
             data: ingredients
         });
     } catch (error) {
-        console.error('Error details:', error);
+        debug('Error fetching ingredients:', error);
         res.status(500).json({ 
             success: false, 
             message: 'Error fetching ingredients',
@@ -34,7 +33,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single ingredient
-router.get('/:id', async (req, res) => {
+router.get('/api/ingredients/:id', async (req, res) => {
     try {
         debug('Fetching ingredient with id:', req.params.id);
         const ingredient = await Ingredient.findById(req.params.id);
@@ -63,7 +62,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create ingredient
-router.post('/', async (req, res) => {
+router.post('/api/ingredients', async (req, res) => {
     try {
         debug('Creating new ingredient with data:', req.body);
         const { name } = req.body;  // Chỉ lấy name từ request
@@ -109,7 +108,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update ingredient
-router.put('/:id', async (req, res) => {
+router.put('/api/ingredients/:id', async (req, res) => {
     try {
         debug('Updating ingredient with id:', req.params.id);
         debug('Update data:', req.body);
@@ -162,7 +161,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete ingredient
-router.delete('/:id', async (req, res) => {
+router.delete('/api/ingredients/:id', async (req, res) => {
     try {
         debug('Deleting ingredient with id:', req.params.id);
         

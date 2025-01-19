@@ -144,18 +144,7 @@ app.use((req, res) => {
     message: `Route not found: ${req.originalUrl}`,
   });
 });
-// Thêm vào server.js sau khi kết nối MongoDB
-mongoose.connection.on('connected', async () => {
-  try {
-      const collections = await mongoose.connection.db.listCollections().toArray();
-      console.log('Available collections:', collections.map(c => c.name));
-      
-      const ingredientCount = await Ingredient.countDocuments();
-      console.log('Number of ingredients in DB:', ingredientCount);
-  } catch (err) {
-      console.error('Error checking collections:', err);
-  }
-});
+
 // Start Server
 const server = app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

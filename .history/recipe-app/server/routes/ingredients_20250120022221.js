@@ -14,9 +14,9 @@ router.use((req, res, next) => {
 // Get all ingredients
 router.get('/', async (req, res) => {
     try {
-        console.log('Attempting to fetch ingredients');
+        debug('Fetching all ingredients');
         const ingredients = await Ingredient.find().sort({ name: 1 });
-        console.log('Fetched ingredients:', ingredients);
+        debug(`Found ${ingredients.length} ingredients`);
         
         res.json({
             success: true,
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
             data: ingredients
         });
     } catch (error) {
-        console.error('Error details:', error);
+        debug('Error fetching ingredients:', error);
         res.status(500).json({ 
             success: false, 
             message: 'Error fetching ingredients',
