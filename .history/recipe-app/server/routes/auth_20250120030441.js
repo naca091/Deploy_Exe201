@@ -6,7 +6,8 @@ const auth = require("../middleware/auth");
 const { User, Role, LoginStat } = require("../models/models");
 
 // Thêm JWT_SECRET trực tiếp
-const JWT_SECRET ="a990db5c4af7b98eb9f36b753a7ec19c6c12c1d881cd7f985a7781e8966f61d7";
+const JWT_SECRET =
+  "a990db5c4af7b98eb9f36b753a7ec19c6c12c1d881cd7f985a7781e8966f61d7";
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
