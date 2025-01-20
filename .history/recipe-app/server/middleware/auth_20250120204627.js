@@ -1,7 +1,7 @@
 // middleware/auth.js
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/models');
-const JWT_SECRET = "bdf24ce3abeb1bb3b456256171f4c3eeacb6786dc2de7ba43d256a0ddb7d52be";
+const JWT_SECRET = "5466d9879d822cc960997ca4ca7e7ffb550d07fc4ce3e118d8c29b39af5427c2";
 
 const auth = async (req, res, next) => {
   try {

@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Endpoint để upload file
-router.post("/upload", upload.single("image"), (req, res) => {
+router.post("/api/menus/upload", upload.single("image"), (req, res) => {
   try {
     console.log("Request file:", req.file); // Log file được gửi lên
     if (!req.file) {
@@ -39,7 +39,7 @@ router.post("/upload", upload.single("image"), (req, res) => {
 });
 
 // Create menu
-router.post("/", async (req, res) => {
+router.post("/api/menus", async (req, res) => {
   try {
     const {
       name,
@@ -143,6 +143,24 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Get all menus
+/*router.get("/api/menus", async (req, res) => {
+  try {
+    const menus = await Menu.find().sort({ name: 1 });
+    res.json({
+      success: true,
+      count: menus.length,
+      data: menus,
+    });
+  } catch (error) {
+    console.error("Error fetching menus:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching menus",
+      error: error.message,
+    });
+  }
+});*/
 
 router.get("/menus", async (req, res) => {
   try {
@@ -186,7 +204,7 @@ router.get("/menus", async (req, res) => {
 });
 
 // Get single menu by ID
-router.get("/:id", async (req, res) => {
+router.get("/api/menus/:id", async (req, res) => {
   try {
     const menu = await Menu.findById(req.params.id);
     if (!menu) {
@@ -210,7 +228,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update menu by ID
-router.put("/:id", async (req, res) => {
+router.put("/api/menus/:id", async (req, res) => {
   try {
     const {
       name,
@@ -303,7 +321,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete menu by ID
-router.delete("/:id", async (req, res) => {
+router.delete("/api/menus/:id", async (req, res) => {
   try {
     const menu = await Menu.findByIdAndDelete(req.params.id);
     if (!menu) {
@@ -327,7 +345,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Endpoint để tạo menu
-router.post("/", async (req, res) => {
+router.post("/api/menus", async (req, res) => {
   try {
     const menu = new Menu(req.body);
     await menu.save();
@@ -338,7 +356,7 @@ router.post("/", async (req, res) => {
 });
 
 // Endpoint để lấy danh sách menu
-router.get("/", async (req, res) => {
+router.get("/api/menus", async (req, res) => {
   try {
     const menus = await Menu.find()
       .populate("category")
@@ -350,7 +368,7 @@ router.get("/", async (req, res) => {
 });
 
 // Route mua menu
-router.post("/:menuId/purchase", auth, async (req, res) => {
+router.post("/api/menus/:menuId/purchase", auth, async (req, res) => {
   try {
     const { menuId } = req.params;
     console.log("Purchase attempt for menuId:", menuId);

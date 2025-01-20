@@ -7,7 +7,7 @@ const { User, Role, LoginStat } = require("../models/models");
 
 // Thêm JWT_SECRET trực tiếp
 const JWT_SECRET =
-  "bdf24ce3abeb1bb3b456256171f4c3eeacb6786dc2de7ba43d256a0ddb7d52be";
+  "susoQfNq4WXLoeVzrGXmGTv1SfXaq8/av6+rwtVyvLY3y4LKQ1ukTWFjritJIdCf7LD7TZC3PP7U6xcL9WoW4P1DlQfw8PYuXAMKZ4cA4VpBYKPaMR4/a6Qw496v+rLz2+hr0DmzRY30/sioXvj1CxqH7eKy5nFfy8SoZKXr3WOOn+oIkoIQbEMXLZnleYPNffYp/0IlGovEcqjVu+5XDLcEGanVxzQp6xSyIsAkH34cQV95KxIwpOqucsMubdUhpQj1J36I1+2j0oZd04hzj7FuosixC+PSF1cQ2tBU3MOvZUu1gujUMAXop1gUPHdn4PZ+WQcWOx09FIuR7q6H5A==    ";
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;

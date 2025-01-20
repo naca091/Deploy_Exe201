@@ -6,8 +6,7 @@ const auth = require("../middleware/auth");
 const { User, Role, LoginStat } = require("../models/models");
 
 // Thêm JWT_SECRET trực tiếp
-const JWT_SECRET =
-  "bdf24ce3abeb1bb3b456256171f4c3eeacb6786dc2de7ba43d256a0ddb7d52be";
+const JWT_SECRET ="9678d44b902720c8b90db26395bfc1d35a76fb79d962fd0ea807fd5c2f1bbf3a";
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -29,7 +28,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, roleId: user.role.id },
       JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "7d" }
     );
 
     res.json({
@@ -51,10 +50,15 @@ router.post("/login", async (req, res) => {
 
 router.get("/me", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).populate({
-      path: "purchasedMenus.menuId",
-      select: "name description unlockPrice defaultStatus",
-    });
+    const user = await User.findById(req.user._id)
+      .populate({
+        path: "purchasedMenus.menuId",
+        select: "name description unlockPrice defaultStatus",
+      })
+      .catch((err) => {
+        console.error("Error fetching user:", err);
+        throw err;
+      });
 
     if (!user) {
       return res.status(404).json({
@@ -68,7 +72,6 @@ router.get("/me", auth, async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-
         email: user.email,
         fullName: user.fullName,
         role: user.role,
@@ -133,7 +136,7 @@ router.post("/register", async (req, res) => {
     }
 
     // Tìm role với id = 1
-    const memberRole = await Role.findOne({ id: 2 });
+    const memberRole = await Role.findOne({ id: 1 });
     if (!memberRole) {
       console.error("Role with id: 1 not found");
       return res.status(500).json({
