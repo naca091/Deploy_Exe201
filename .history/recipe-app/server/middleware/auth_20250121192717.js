@@ -16,7 +16,7 @@ const auth = async (req, res, next) => {
 
         const token = authHeader.replace('Bearer ', '');
         
-        if (!JWT_SECRET) {
+        if (!process.env.JWT_SECRET) {
             console.error('JWT_SECRET not configured');
             return res.status(500).json({
                 success: false,
@@ -24,7 +24,7 @@ const auth = async (req, res, next) => {
             });
         }
 
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.userId).populate('role');
 
         if (!user) {

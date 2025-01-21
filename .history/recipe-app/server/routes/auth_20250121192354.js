@@ -9,67 +9,44 @@ const { User, Role, LoginStat } = require("../models/models");
 const JWT_SECRET =
   "16d139b9a1550760dad34a6de1122b68466745b34a583cbc45acaf0e822ad480";
 
-router.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: 'Email and password are required'
-            });
-        }
-
-        const user = await User.findOne({ email }).populate('role');
-        
-        if (!user) {
-            return res.status(401).json({
-                success: false,
-                message: 'Invalid credentials'
-            });
-        }
-
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        
-        if (!isPasswordValid) {
-            return res.status(401).json({
-                success: false,
-                message: 'Invalid credentials'
-            });
-        }
-
-        const loginStat = new LoginStat({
-            userId: user._id,
-            timestamp: new Date()
-        });
-        await loginStat.save();
-
-        const token = jwt.sign(
-            { 
-                userId: user._id,
-                roleId: user.role.id
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: '72h' }
-        );
-
-        res.json({
-            success: true,
-            message: 'Login successful',
-            token,
-            user: {
-                email: user.email,
-                xu: user.xu,
-                roleId: user.role.id
-            }
-        });
-    } catch (error) {
-        console.error('Login Error:', error);
-        res.status(500).json({
-            success: false,
-            message: 'An error occurred during login'
-        });
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email }).populate("role");
+    if (!user || user.password !== password) {
+      return res.status(401).json({
+        success: false,
+        message: "Email or password is incorrect",
+      });
     }
+
+    // Thêm ghi nhận đăng nhập
+    const loginStat = new LoginStat({
+      userId: user._id,
+    });
+    await loginStat.save();
+
+    const token = jwt.sign(
+      { userId: user._id, roleId: user.role.id },
+      JWT_SECRET,
+      { expiresIn: "72h" }
+    );
+
+    res.json({
+      success: true,
+      message: "Login successful",
+      token,
+      userEmail: user.email,
+      userxu: user.xu,
+      roleId: user.role.id,
+    });
+  } catch (error) {
+    console.error("Login Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred during login",
+    });
+  }
 });
 
 router.get("/me", auth, async (req, res) => {

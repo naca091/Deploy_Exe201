@@ -9,7 +9,7 @@ const { User, Role, LoginStat } = require("../models/models");
 const JWT_SECRET =
   "16d139b9a1550760dad34a6de1122b68466745b34a583cbc45acaf0e822ad480";
 
-router.post('/login', async (req, res) => {
+  router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
