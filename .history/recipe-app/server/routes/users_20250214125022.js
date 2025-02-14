@@ -250,7 +250,7 @@ router.delete('/:userId', async (req, res) => {
 
 // Add coins to user
 // Add xu to user
-router.post('/:userId/add-xu', async (req, res) => {
+router.post('/api/users/:userId/add-xu', async (req, res) => {
     try {
       const { amount } = req.body;
       
